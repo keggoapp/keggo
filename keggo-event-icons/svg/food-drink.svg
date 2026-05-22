@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80" width="80" height="80" fill="none">
+<g fill="none" stroke="#1A1715" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+        
+        
+        <path d="M17 28&#xA;                 L17 14&#xA;                 L21 14&#xA;                 L21 24&#xA;                 L24 24&#xA;                 L24 14&#xA;                 L28 14&#xA;                 L28 24&#xA;                 L31 24&#xA;                 L31 14&#xA;                 L35 14&#xA;                 L35 28&#xA;                 Q35 32 31 32&#xA;                 L30 32&#xA;                 L30 68&#xA;                 L26 70&#xA;                 L22 68&#xA;                 L22 32&#xA;                 L21 32&#xA;                 Q17 32 17 28 Z" fill="#F2E4C4"></path>
+        
+        <path d="M22 40 L22 68 L26 70 L30 68 L30 40 Z" fill="#D84A2A" stroke="none"></path>
+        
+        <path d="M17 28&#xA;                 L17 14&#xA;                 L21 14&#xA;                 L21 24&#xA;                 L24 24&#xA;                 L24 14&#xA;                 L28 14&#xA;                 L28 24&#xA;                 L31 24&#xA;                 L31 14&#xA;                 L35 14&#xA;                 L35 28&#xA;                 Q35 32 31 32&#xA;                 L30 32&#xA;                 L30 68&#xA;                 L26 70&#xA;                 L22 68&#xA;                 L22 32&#xA;                 L21 32&#xA;                 Q17 32 17 28 Z" fill="none"></path>
+        
+        
+        <path d="M46 14 L66 14 L63 70 L49 70 Z" fill="#F2E4C4"></path>
+        <path d="M47 26 L65 26 L62.7 70 L49.3 70 Z" fill="#F4B944"></path>
+        <path d="M46 14 Q50 10 54 14 Q58 10 62 14 Q64 12 66 14 L65.5 22 L46.5 22 Z" fill="#F2E4C4"></path>
+        <path d="M46 14 Q50 10 54 14 Q58 10 62 14 Q64 12 66 14"></path>
+        <line x1="46.5" y1="22" x2="65.5" y2="22" stroke-width="1.8"></line>
+        <path d="M46 14 L66 14 L63 70 L49 70 Z"></path>
+        <circle cx="54" cy="36" r="1.4" fill="#1A1715" stroke="none"></circle>
+        <circle cx="58" cy="44" r="1.2" fill="#1A1715" stroke="none"></circle>
+        <circle cx="53" cy="52" r="1.2" fill="#1A1715" stroke="none"></circle>
+      </g>
+</svg>

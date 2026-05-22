@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80" width="80" height="80" fill="none">
+<g fill="none" stroke="#1A1715" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="10" y="18" width="60" height="52" rx="4" fill="#F2E4C4"></rect>
+        <path d="M10 22 Q10 18 14 18 L66 18 Q70 18 70 22 L70 30 L10 30 Z" fill="#D84A2A"></path>
+        <line x1="10" y1="30" x2="70" y2="30"></line>
+        <line x1="22" y1="12" x2="22" y2="22" stroke-width="2.6"></line>
+        <line x1="58" y1="12" x2="58" y2="22" stroke-width="2.6"></line>
+        <circle cx="22" cy="42" r="1.8" fill="#1A1715" stroke="none"></circle>
+        <circle cx="34" cy="42" r="1.8" fill="#1A1715" stroke="none"></circle>
+        <circle cx="46" cy="42" r="1.8" fill="#1A1715" stroke="none"></circle>
+        <circle cx="58" cy="42" r="1.8" fill="#1A1715" stroke="none"></circle>
+        <circle cx="22" cy="54" r="1.8" fill="#1A1715" stroke="none"></circle>
+        <circle cx="34" cy="54" r="5" fill="#F4B944"></circle>
+        <circle cx="46" cy="54" r="1.8" fill="#1A1715" stroke="none"></circle>
+        <circle cx="58" cy="54" r="1.8" fill="#1A1715" stroke="none"></circle>
+      </g>
+</svg>
