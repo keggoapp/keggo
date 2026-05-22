@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="format-detection" content="telephone=no, date=no, address=no, email=no" />
   <title>Keggo V2 — Design Explorations</title>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
@@ -13,6 +14,14 @@
   <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Fredoka:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Nunito:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    /* Stop iOS Safari from auto-linking dates/phone numbers and styling them blue */
+    a[x-apple-data-detectors],
+    a[x-apple-data-detectors] * {
+      color: inherit !important;
+      text-decoration: none !important;
+      font: inherit !important;
+      pointer-events: none !important;
+    }
     :root {
       --cream: #F2E4C4; --cream-deep: #E7D6AC; --paper: #f7eed6;
       --ink: #1A1715; --ink-soft: #2a2724;
