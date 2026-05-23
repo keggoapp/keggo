@@ -214,6 +214,50 @@
     .card-title { font-family: var(--font-display); font-size: 19px; font-weight: 700; margin-bottom: 4px; line-height: 1.18; color: var(--ink); letter-spacing: -0.018em; }
     .card-venue-link { font-family: var(--font-display); font-size: 16px; font-weight: 700; color: var(--ink-soft); cursor: pointer; text-decoration: underline; text-decoration-style: dotted; text-underline-offset: 3px; text-decoration-thickness: 1.5px; text-decoration-color: var(--ink); transition: color var(--transition), text-decoration-color var(--transition); }
     .card-venue-link:hover { color: var(--honey); text-decoration-color: var(--honey); }
+
+    /* Venue link rendered as an obvious tappable button (event card + detail modal + list) */
+    .venue-link-btn { display: inline-flex; align-items: center; gap: 6px; font-family: var(--font-display); font-weight: 700; font-size: 14px; color: var(--ink); background: var(--cream); border: 2px solid var(--ink); border-radius: 100px; padding: 5px 12px; cursor: pointer; box-shadow: 2px 2px 0 var(--ink); transition: transform var(--transition), box-shadow var(--transition), background var(--transition), color var(--transition); max-width: 100%; line-height: 1.1; }
+    .venue-link-btn:hover { background: var(--honey); transform: translate(-1px,-1px); box-shadow: 3px 3px 0 var(--ink); }
+    .venue-link-btn .venue-link-btn-pin { flex-shrink: 0; }
+    .venue-link-btn .venue-link-btn-name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .venue-link-btn .venue-link-btn-arrow { flex-shrink: 0; opacity: 0.65; }
+    .venue-link-btn--detail { font-size: 15px; padding: 7px 15px; margin-top: 8px; }
+    .venue-link-btn--list { font-size: 12.5px; padding: 4px 10px; }
+
+    /* Chalkboard theme — outline pill on dark cards, honey pill on the detail dark band */
+    body.theme-chalkboard .card .venue-link-btn { background: transparent; color: var(--cream); border-color: rgba(242,228,196,0.6); box-shadow: none; margin-top: 4px; }
+    body.theme-chalkboard .card .venue-link-btn:hover { background: var(--honey); color: var(--ink); border-color: var(--ink); }
+    body.theme-chalkboard .list-item-body .venue-link-btn { background: transparent; color: var(--cream); border-color: rgba(242,228,196,0.6); box-shadow: none; margin: 2px 0 2px; }
+    body.theme-chalkboard .list-item-body .venue-link-btn:hover { background: var(--honey); color: var(--ink); border-color: var(--ink); }
+    body.theme-chalkboard .detail-modal .venue-link-btn { grid-column: 1; justify-self: start; align-self: start; background: var(--honey); color: var(--ink); border: 2px solid var(--ink); box-shadow: 2px 2px 0 var(--ink); font-size: 16px; padding: 8px 16px; margin: 10px 0 0; text-decoration: none; }
+    body.theme-chalkboard .detail-modal .venue-link-btn:hover { background: var(--cream); color: var(--ink); transform: translate(-1px,-1px); box-shadow: 3px 3px 0 var(--ink); }
+
+    /* "View menu" button under the pub bio + the menu viewer modal */
+    .venue-menu-btn { display: inline-flex; align-items: center; gap: 8px; font-family: var(--font-display); font-weight: 700; font-size: 14px; color: var(--ink); background: var(--honey); border: 2.5px solid var(--ink); border-radius: 100px; padding: 9px 18px; cursor: pointer; box-shadow: 2px 2px 0 var(--ink); transition: all var(--transition); margin: 6px 0 4px; }
+    .venue-menu-btn:hover { background: var(--cream); transform: translate(-1px,-1px); box-shadow: 3px 3px 0 var(--ink); }
+    .venue-menu-btn svg { flex-shrink: 0; }
+    .menu-modal { background: var(--card); border-radius: 22px; padding: 0; max-width: 520px; width: 100%; max-height: 88vh; overflow-y: auto; position: relative; border: 3px solid var(--ink); box-shadow: 8px 8px 0 var(--ink); }
+    .menu-modal .modal-close { top: 18px; right: 18px; }
+    .menu-modal-head { background: var(--ink); color: var(--cream); padding: 24px 26px 20px; }
+    .menu-modal-venue { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--honey); margin-bottom: 4px; }
+    .menu-modal-title { font-family: var(--font-hand); font-weight: 700; font-size: 34px; line-height: 1; color: var(--cream); }
+    .menu-modal-body { padding: 22px 26px 28px; }
+    .menu-section { margin-bottom: 22px; }
+    .menu-section:last-child { margin-bottom: 0; }
+    .menu-section-head { font-family: var(--font-hand); font-weight: 700; font-size: 25px; color: var(--ink); margin-bottom: 12px; border-bottom: 2.5px dotted var(--ink); padding-bottom: 5px; }
+    .menu-item { display: flex; justify-content: space-between; gap: 14px; margin-bottom: 13px; align-items: baseline; }
+    .menu-item:last-child { margin-bottom: 0; }
+    .menu-item-name { font-family: var(--font-display); font-weight: 700; font-size: 14.5px; color: var(--ink); }
+    .menu-item-desc { font-family: var(--font-body); font-size: 12.5px; color: var(--ink-soft); line-height: 1.45; margin-top: 1px; }
+    .menu-item-price { font-family: var(--font-display); font-weight: 700; font-size: 14px; color: var(--ink); white-space: nowrap; flex-shrink: 0; }
+    .menu-modal-note { font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 0.04em; color: var(--ink-soft); text-align: center; margin-top: 18px; opacity: 0.75; }
+    .menu-pdf-frame { width: 100%; height: 60vh; border: 2.5px solid var(--ink); border-radius: 12px; background: var(--cream); display: block; }
+
+    /* Encouraging hint shown by the image-upload boxes */
+    .upload-hint { display: flex; gap: 9px; align-items: flex-start; background: var(--cream); border: 2px dashed var(--ink); border-radius: 12px; padding: 10px 13px; margin-bottom: 12px; }
+    .upload-hint svg { flex-shrink: 0; margin-top: 1px; color: var(--ink); opacity: 0.85; }
+    .upload-hint-text { font-family: var(--font-body); font-size: 12.5px; line-height: 1.5; color: var(--ink-soft); }
+    .upload-hint-text strong { color: var(--ink); font-family: var(--font-display); font-weight: 700; }
     .card-venue-area { font-family: var(--font-mono); font-size: 10.5px; font-weight: 600; color: var(--ink-soft); margin-top: 2px; margin-bottom: 6px; letter-spacing: 0.14em; text-transform: uppercase; }
     .card-venue-services { display: flex; gap: 4px; flex-wrap: nowrap; overflow: hidden; margin: 10px 0 8px; width: 100%; align-items: center; }
     .card-venue-services .mini-tag { font-family: var(--font-display); font-size: 9.5px; font-weight: 500; padding: 2px 7px; border-radius: 100px; border: 1.5px solid var(--ink); background: var(--cream); color: var(--ink); opacity: 0.85; white-space: nowrap; flex-shrink: 0; }
@@ -1887,8 +1931,8 @@
     @media (max-width: 600px) {
       body.theme-chalkboard .detail-modal { border-radius: 18px; }
       body.theme-chalkboard .detail-modal:has(.detail-poster)::before,
-      body.theme-chalkboard .detail-modal:has(.detail-poster)::after { height: 460px; }
-      body.theme-chalkboard .detail-poster { height: 180px; margin: 14px 14px 0; width: calc(100% - 28px); }
+      body.theme-chalkboard .detail-modal:has(.detail-poster)::after { height: 540px; }
+      body.theme-chalkboard .detail-poster { aspect-ratio: 4 / 3; height: auto; margin: 14px 14px 0; width: calc(100% - 28px); }
       body.theme-chalkboard .detail-header { margin: 14px 18px 18px; }
       body.theme-chalkboard .detail-title { font-size: 32px; }
       body.theme-chalkboard .detail-info-grid { margin: 18px 18px 0; padding: 14px 8px; }
@@ -2507,6 +2551,98 @@
       "Demo Venue": { displayName: "", address: "", bio: "", website: "", photo: null, services: [], hours: { Mon: "", Tue: "", Wed: "", Thu: "", Fri: "", Sat: "", Sun: "" } },
     };
 
+    /* Sample food menus for half of the pubs. In production a venue uploads a
+       PDF (stored on the profile as { type: "pdf", dataUrl, fileName }); these
+       hand-written sample menus stand in so the feature can be demoed. Pubs
+       without a menu simply omit the key and the section stays hidden. */
+    const SAMPLE_MENUS = {
+      "The Pelican": [
+        { heading: "Small Plates", items: [
+          { name: "Scotch Egg", desc: "Free-range egg, sausage meat, piccalilli", price: "£6.5" },
+          { name: "Soup of the Day", desc: "With warm sourdough & salted butter", price: "£6" },
+          { name: "Crispy Whitebait", desc: "Lemon, dill mayo", price: "£7" },
+        ]},
+        { heading: "Pub Classics", items: [
+          { name: "Beer-Battered Fish & Chips", desc: "Triple-cooked chips, mushy peas, tartare", price: "£15.5" },
+          { name: "Pelican Burger", desc: "6oz patty, smoked cheddar, bacon jam, fries", price: "£14" },
+          { name: "Steak & Ale Pie", desc: "Shortcrust, buttered greens, gravy", price: "£14.5" },
+          { name: "Wild Mushroom Risotto", desc: "Parmesan, truffle oil (v)", price: "£13" },
+        ]},
+        { heading: "Sunday Roasts", items: [
+          { name: "Roast Sirloin of Beef", desc: "Yorkshire pudding, duck-fat potatoes, all the trimmings", price: "£17" },
+          { name: "Roast Chicken Supreme", desc: "Sage & onion stuffing, pan gravy", price: "£15.5" },
+          { name: "Nut Roast", desc: "Veg gravy, roast potatoes (v)", price: "£14" },
+        ]},
+      ],
+      "The Cricketers": [
+        { heading: "To Start", items: [
+          { name: "Baked Camembert", desc: "Rosemary, honey, toasted ciabatta (for 2)", price: "£9" },
+          { name: "Ham Hock Terrine", desc: "Piccalilli, sourdough toast", price: "£7.5" },
+        ]},
+        { heading: "From the Kitchen", items: [
+          { name: "Cricketers Fish Pie", desc: "Salmon, smoked haddock, prawns, mash crust", price: "£15" },
+          { name: "Bangers & Mash", desc: "Cumberland sausages, onion gravy", price: "£13" },
+          { name: "Halloumi & Roasted Veg Stack", desc: "Pesto dressing (v)", price: "£12.5" },
+        ]},
+        { heading: "Famous Sunday Roasts", items: [
+          { name: "Roast Topside of Beef", desc: "Giant Yorkshire, honey-roast parsnips", price: "£16.5" },
+          { name: "Slow-Roast Pork Belly", desc: "Crackling, apple sauce", price: "£16" },
+          { name: "Trio of Roasts", desc: "Beef, pork & chicken — the full spread", price: "£19" },
+        ]},
+      ],
+      "The Crown Hotel": [
+        { heading: "Light Bites", items: [
+          { name: "Loaded Nachos", desc: "Melted cheese, jalapeños, salsa, sour cream", price: "£8" },
+          { name: "Soup & a Sandwich", desc: "Daily soup, choice of doorstep sandwich", price: "£9" },
+        ]},
+        { heading: "Mains", items: [
+          { name: "Gammon, Egg & Chips", desc: "Two fried eggs, grilled pineapple", price: "£13" },
+          { name: "Scampi & Chips", desc: "Wholetail scampi, peas, tartare", price: "£12.5" },
+          { name: "Chicken Tikka Masala", desc: "Basmati rice, naan, mango chutney", price: "£13.5" },
+          { name: "Veggie Sausage & Mash", desc: "Onion gravy (v)", price: "£11.5" },
+        ]},
+        { heading: "Stone-Baked Pizzas", items: [
+          { name: "Margherita", desc: "Tomato, mozzarella, basil (v)", price: "£11" },
+          { name: "Pepperoni", desc: "Double pepperoni, chilli honey", price: "£13" },
+        ]},
+      ],
+      "The Olde Swan": [
+        { heading: "Curry Club (Thursdays)", items: [
+          { name: "Chicken Balti", desc: "Rice, naan & a pint for £12", price: "£12" },
+          { name: "Lamb Rogan Josh", desc: "Slow-cooked, rice & naan", price: "£13" },
+          { name: "Saag Aloo & Chana", desc: "Spinach, potato, chickpea (v)", price: "£11" },
+        ]},
+        { heading: "Pub Favourites", items: [
+          { name: "Fish & Chips", desc: "Hand-battered cod, chunky chips", price: "£14" },
+          { name: "Steak & Kidney Pudding", desc: "Suet pastry, mash, gravy", price: "£14" },
+          { name: "Swan Cheeseburger", desc: "Smashed patties, burger sauce, fries", price: "£13" },
+        ]},
+        { heading: "Sides", items: [
+          { name: "Onion Bhajis", desc: "Mint yoghurt (3)", price: "£4.5" },
+          { name: "Loaded Fries", desc: "Cheese & crispy onions", price: "£5" },
+        ]},
+      ],
+      "The Minnow": [
+        { heading: "From the River & Sea", items: [
+          { name: "Friday Fish & Chips", desc: "Beer-battered haddock, triple-cooked chips", price: "£15.5" },
+          { name: "Half Pint of Prawns", desc: "Marie Rose, brown bread", price: "£8.5" },
+          { name: "Smoked Mackerel Pâté", desc: "Pickled cucumber, toast", price: "£7.5" },
+        ]},
+        { heading: "Terrace Plates", items: [
+          { name: "Minnow Fish Burger", desc: "Panko cod, tartare, gem lettuce, fries", price: "£14" },
+          { name: "Buttermilk Chicken Burger", desc: "Slaw, sriracha mayo, fries", price: "£13.5" },
+          { name: "Garden Salad Bowl", desc: "Halloumi or falafel, house dressing (v)", price: "£12" },
+        ]},
+        { heading: "Sweet Things", items: [
+          { name: "Sticky Toffee Pudding", desc: "Salted caramel, clotted cream", price: "£7" },
+          { name: "Eton Mess", desc: "Seasonal berries, Chantilly", price: "£6.5" },
+        ]},
+      ],
+    };
+    Object.keys(SAMPLE_MENUS).forEach(name => {
+      if (DEFAULT_PROFILES[name]) DEFAULT_PROFILES[name].menu = { type: "sample", sections: SAMPLE_MENUS[name] };
+    });
+
     function getDistanceMiles(lat1, lng1, lat2, lng2) {
       const R = 3958.8;
       const dLat = (lat2 - lat1) * Math.PI / 180;
@@ -3048,11 +3184,70 @@
     ];
 
     /* --- Venue Profile Modal (read-only for users) --- */
+    /* Venue name rendered as an unmistakable button (event card + detail modal + list) */
+    function VenueLinkButton({ venue, onClick, className }) {
+      return (
+        <button type="button" className={`venue-link-btn ${className || ""}`} onClick={onClick} title={`View ${venue}`}>
+          <svg className="venue-link-btn-pin" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span className="venue-link-btn-name">{venue}</span>
+          <svg className="venue-link-btn-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+        </button>
+      );
+    }
+
+    /* Menu viewer — renders a sample menu (sections of items) or an uploaded PDF */
+    function MenuModal({ venueName, menu, onClose }) {
+      return (
+        <div className="modal-overlay" style={{ zIndex: 10001 }} onClick={onClose}>
+          <div className="menu-modal" onClick={e => e.stopPropagation()}>
+            <button className="modal-close" onClick={onClose}>&times;</button>
+            <div className="menu-modal-head">
+              <div className="menu-modal-venue">{venueName}</div>
+              <div className="menu-modal-title">Menu</div>
+            </div>
+            <div className="menu-modal-body">
+              {menu.type === "pdf" ? (
+                <>
+                  <iframe src={menu.dataUrl} className="menu-pdf-frame" title={`${venueName} menu`}></iframe>
+                  <div style={{ textAlign: "center", marginTop: "14px" }}>
+                    <a href={menu.dataUrl} target="_blank" rel="noopener noreferrer" download={menu.fileName || "menu.pdf"} className="venue-menu-btn" style={{ textDecoration: "none" }}>
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                      Open full PDF
+                    </a>
+                  </div>
+                </>
+              ) : (
+                <>
+                  {(menu.sections || []).map((section, si) => (
+                    <div key={si} className="menu-section">
+                      <div className="menu-section-head">{section.heading}</div>
+                      {section.items.map((item, ii) => (
+                        <div key={ii} className="menu-item">
+                          <div>
+                            <div className="menu-item-name">{item.name}</div>
+                            {item.desc && <div className="menu-item-desc">{item.desc}</div>}
+                          </div>
+                          {item.price && <div className="menu-item-price">{item.price}</div>}
+                        </div>
+                      ))}
+                    </div>
+                  ))}
+                  <div className="menu-modal-note">Sample menu — dishes &amp; prices may vary. Ask at the bar for today's specials.</div>
+                </>
+              )}
+            </div>
+          </div>
+        </div>
+      );
+    }
+
     function VenueProfileModal({ venueName, venueArea, profiles, events, onClose, onSelectEvent }) {
-      const profile = profiles[venueName] || { displayName: "", address: "", bio: "", website: "", photo: null, services: [], hours: {} };
+      const profile = profiles[venueName] || { displayName: "", address: "", bio: "", website: "", photo: null, services: [], hours: {}, menu: null };
       const venueImg = getVenueImage(venueName, profiles);
       const venueEvents = (events || []).filter(e => e.venue === venueName).sort((a,b) => new Date(a.date) - new Date(b.date));
+      const [showMenu, setShowMenu] = useState(false);
       return (
+        <>
         <div className="modal-overlay" onClick={onClose}>
           <div className="detail-modal" style={{ maxWidth: "560px" }} onClick={e => e.stopPropagation()}>
             <button className="modal-close" onClick={onClose}>&times;</button>
@@ -3068,6 +3263,12 @@
                 <div className="profile-name">{profile.displayName || venueName}</div>
                 <div className="profile-area">{venueArea || "Local venue"}</div>
                 {profile.bio && <div className="profile-bio">{profile.bio}</div>}
+                {profile.menu && (
+                  <button type="button" className="venue-menu-btn" onClick={() => setShowMenu(true)}>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 5h18M3 12h18M3 19h12"/><circle cx="19.5" cy="19" r="1.6" fill="currentColor" stroke="none"/></svg>
+                    View Menu
+                  </button>
+                )}
                 {profile.address && (
                   <>
                     <div className="profile-section-title">Find us</div>
@@ -3116,7 +3317,7 @@
                       const svgFile = CAT_SVG_MAP[ev.category] || "other";
                       const fd = formatDate(ev.date);
                       return (
-                        <div key={ev.id} className="venue-event-row" onClick={() => { if (onSelectEvent) onSelectEvent(ev); }}>
+                        <div key={ev.id} className="venue-event-row" onClick={() => { if (onSelectEvent) onSelectEvent(ev, venueEvents); }}>
                           <div className="venue-event-icon" style={{ background: catStyle.bg }}>
                             <img src={`${SVG_BASE}${svgFile}.svg`} width="20" height="20" alt="" />
                           </div>
@@ -3134,6 +3335,8 @@
             </div>
           </div>
         </div>
+        {showMenu && profile.menu && <MenuModal venueName={profile.displayName || venueName} menu={profile.menu} onClose={() => setShowMenu(false)} />}
+        </>
       );
     }
 
@@ -3147,7 +3350,9 @@
       const [photo, setPhoto] = useState(existing.photo);
       const [services, setServices] = useState(existing.services);
       const [hours, setHours] = useState(existing.hours);
+      const [menu, setMenu] = useState(existing.menu || null);
       const photoInputRef = useRef(null);
+      const menuInputRef = useRef(null);
       const addressInputRef = useRef(null);
       const autocompleteRef = useRef(null);
 
@@ -3189,8 +3394,17 @@
         }
       };
 
+      const handleMenuChange = (e) => {
+        const file = e.target.files[0];
+        if (file) {
+          const reader = new FileReader();
+          reader.onloadend = () => setMenu({ type: "pdf", dataUrl: reader.result, fileName: file.name });
+          reader.readAsDataURL(file);
+        }
+      };
+
       const handleSave = () => {
-        onSave(user.name, { displayName, address, bio, website, photo, services, hours });
+        onSave(user.name, { displayName, address, bio, website, photo, services, hours, menu });
       };
 
       return (
@@ -3200,6 +3414,10 @@
 
           <div style={{ marginBottom: "20px" }}>
             <div className="profile-section-title">Venue Photo <span className="scribble">your best side</span></div>
+            <div className="upload-hint">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="8.5" cy="10" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+              <div className="upload-hint-text"><strong>Show off the place, not a poster.</strong> A landscape <strong>4:3</strong> photo of your venue works best — the room, the garden, a busy night. Skip flyers and event posters; we take care of the words.</div>
+            </div>
             <div className="poster-upload" onClick={() => photoInputRef.current?.click()}>
               {currentImage ? (
                 <img src={currentImage} alt={user.name} style={{ width: "100%", aspectRatio: "4 / 3", height: "auto", objectFit: "cover", borderRadius: "12px", border: "2px solid var(--ink)", display: "block" }} />
@@ -3214,6 +3432,29 @@
             {photo && (
               <button onClick={() => setPhoto(null)} style={{ background: "none", border: "none", color: "var(--ink)", fontFamily: "'Fredoka', sans-serif", fontSize: "13px", fontWeight: 700, cursor: "pointer", marginTop: "6px", textDecoration: "underline dotted", textUnderlineOffset: "3px" }}>Remove uploaded photo</button>
             )}
+          </div>
+
+          <div style={{ marginBottom: "20px" }}>
+            <div className="profile-section-title">Menu <span className="scribble">optional</span></div>
+            <p style={{ fontSize: "13px", color: "var(--ink-soft)", margin: "0 0 10px", fontFamily: "var(--font-body)", lineHeight: 1.5 }}>Upload your food &amp; drink menu as a PDF and a <strong>View Menu</strong> button appears on your venue profile. Leave this blank to hide it.</p>
+            {menu ? (
+              <div style={{ display: "flex", alignItems: "center", gap: "10px", background: "var(--cream)", border: "2px solid var(--ink)", borderRadius: "12px", padding: "12px 14px" }}>
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--ink)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                <div style={{ flex: 1, minWidth: 0 }}>
+                  <div style={{ fontFamily: "'Fredoka', sans-serif", fontWeight: 700, fontSize: "13.5px", color: "var(--ink)", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{menu.type === "pdf" ? (menu.fileName || "Menu.pdf") : "Sample menu"}</div>
+                  <div style={{ fontSize: "11.5px", color: "var(--ink-soft)" }}>{menu.type === "pdf" ? "PDF uploaded" : "Built-in sample — upload a PDF to replace"}</div>
+                </div>
+                <button onClick={() => setMenu(null)} style={{ background: "none", border: "none", color: "var(--ink)", fontFamily: "'Fredoka', sans-serif", fontSize: "13px", fontWeight: 700, cursor: "pointer", textDecoration: "underline dotted", textUnderlineOffset: "3px", flexShrink: 0 }}>Remove</button>
+              </div>
+            ) : (
+              <div className="poster-upload" onClick={() => menuInputRef.current?.click()} style={{ padding: "20px" }}>
+                <div className="poster-upload-content">
+                  <div className="poster-upload-icon"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><polyline points="9 15 12 12 15 15"/></svg></div>
+                  <div className="poster-upload-text">Click to upload your menu (PDF)</div>
+                </div>
+              </div>
+            )}
+            <input type="file" ref={menuInputRef} accept="application/pdf" onChange={handleMenuChange} style={{ display: "none" }} />
           </div>
 
           <div className="form-grid full">
@@ -3399,7 +3640,7 @@
             <div className="detail-header">
               <div>
                 <h1 className="detail-title">{event.title}</h1>
-                <p className="card-venue-link" onClick={() => { onClose(); onViewVenue(event.venue, event.area); }} style={{ marginBottom: "6px" }}>{event.venue}</p>
+                <VenueLinkButton venue={event.venue} className="venue-link-btn--detail" onClick={() => onViewVenue(event.venue, event.area, event)} />
                 {event.area && <div className="detail-venue-area">{event.area}</div>}
               </div>
               <div className="detail-actions">
@@ -3763,6 +4004,10 @@
               </div>
 
               <div className="wizard-section-label" style={{ marginBottom: "6px" }}>Event photo</div>
+              <div className="upload-hint">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="8.5" cy="10" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+                <div className="upload-hint-text"><strong>A photo of the vibe beats a poster.</strong> Upload a landscape <strong>4:3</strong> shot — the band, the crowd, the food, the pour. Skip flyers and posters; we take care of the words.</div>
+              </div>
               <div className="poster-upload" onClick={() => fileInputRef.current?.click()} style={{ marginBottom: "0" }}>
                 {form.poster ? (
                   <img src={form.poster} alt="Preview" className="poster-preview" />
@@ -4162,6 +4407,7 @@
       const [toast, setToast] = useState(null);
       const [venueProfiles, setVenueProfiles] = useState(DEFAULT_PROFILES);
       const [viewingVenue, setViewingVenue] = useState(null);
+      const [venueReturnEvent, setVenueReturnEvent] = useState(null);
       const [exploreTab, setExploreTab] = useState("events");
       const [venueSearch, setVenueSearch] = useState("");
       const [venueAreaFilter, setVenueAreaFilter] = useState("any");
@@ -4348,7 +4594,17 @@
         showToast("Profile saved");
       };
 
-      const handleViewVenue = (name, area) => { setViewingVenue({ name, area }); };
+      const handleViewVenue = (name, area, fromEvent = null) => {
+        // When opened from an open event window, remember it so closing the
+        // venue returns the user to that event.
+        if (fromEvent) { setVenueReturnEvent(fromEvent); setSelectedEvent(null); }
+        else { setVenueReturnEvent(null); }
+        setViewingVenue({ name, area });
+      };
+      const handleCloseVenue = () => {
+        setViewingVenue(null);
+        if (venueReturnEvent) { const ev = venueReturnEvent; setVenueReturnEvent(null); setSelectedEvent(ev); }
+      };
 
       if (authLoading) return (
         <div style={{ display: "flex", alignItems: "center", justifyContent: "center", minHeight: "100vh", background: "var(--paper)" }}>
@@ -4640,7 +4896,7 @@
                                       {event.sportType && <span className="sport-sub-tag">{SPORT_TYPES.find(s => s.id === event.sportType)?.label}</span>}
                                     </div>
                                     <h3 className="card-title">{event.title}</h3>
-                                    <span className="card-venue-link" onClick={e => { e.stopPropagation(); handleViewVenue(event.venue, event.area); }}>{event.venue}</span>
+                                    <VenueLinkButton venue={event.venue} className="venue-link-btn--card" onClick={e => { e.stopPropagation(); handleViewVenue(event.venue, event.area); }} />
                                     {event.area && <div className="card-venue-area">{event.area}</div>}
                                     <div className="card-meta card-meta-prominent">
                                       <span className="meta-mono">{fd.weekday.toUpperCase()} {fd.day} {fd.month}</span>
@@ -4671,7 +4927,7 @@
                                   <img src={getPosterImage(event, venueProfiles)} alt={event.title} className="list-item-img" />
                                   <div className="list-item-body">
                                     <div className="list-item-title">{event.title}</div>
-                                    <div className="list-item-venue" onClick={e => { e.stopPropagation(); handleViewVenue(event.venue, event.area); }} style={{ cursor: "pointer", textDecoration: "underline dotted", textUnderlineOffset: "2px" }}>{event.venue}</div>
+                                    <div style={{ margin: "2px 0 4px" }}><VenueLinkButton venue={event.venue} className="venue-link-btn--list" onClick={e => { e.stopPropagation(); handleViewVenue(event.venue, event.area); }} /></div>
                                     {event.area && <div className="list-item-area">{event.area}</div>}
                                     <div className="list-item-meta">{formatDate(event.date).weekday} {formatDate(event.date).day} {formatDate(event.date).month} &middot; {event.time}{event.endTime ? ` – ${event.endTime}` : ""} &middot; <span style={{ color: "var(--ink)", fontWeight: "700" }}>{event.price}</span>{event.sportType && <span className="sport-sub-tag" style={{ marginLeft: "6px" }}>{SPORT_TYPES.find(s => s.id === event.sportType)?.label}</span>}</div>
                                     <div className="list-item-desc">{event.description.substring(0, 100)}...</div>
@@ -4769,7 +5025,7 @@
             </>
           )}
 
-          {viewingVenue && <VenueProfileModal venueName={viewingVenue.name} venueArea={viewingVenue.area} profiles={venueProfiles} events={events} onClose={() => setViewingVenue(null)} onSelectEvent={ev => { setViewingVenue(null); setSelectedEvent(ev); }} />}
+          {viewingVenue && <VenueProfileModal venueName={viewingVenue.name} venueArea={viewingVenue.area} profiles={venueProfiles} events={events} onClose={handleCloseVenue} onSelectEvent={(ev, list) => { setViewingVenue(null); setVenueReturnEvent(null); setSelectedEventList(list || [ev]); setSelectedEvent(ev); }} />}
           {showLoginModal && <LoginModal initialTab={loginType} onLogin={u => { setUser(u); setShowLoginModal(false); if (u.type === "venue") setView("dashboard"); }} onClose={() => setShowLoginModal(false)} onGetListed={() => { setShowLoginModal(false); setShowVenueGetListed(true); }} />}
           {showVenueGetListed && <VenueGetListedPage onClose={() => setShowVenueGetListed(false)} onOpenVenueLogin={() => { setShowVenueGetListed(false); setLoginType("venue"); setShowLoginModal(true); }} showToast={showToast} />}
           {toast && <div className="toast">{toast}</div>}
