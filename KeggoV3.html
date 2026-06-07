@@ -155,7 +155,7 @@
     /* 3 across on desktop; the image carries a 4:3 ratio so tiles scale up
        proportionally as the container widens. */
     .events-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; padding-top: 4px; }
-    .card { background: var(--tile); border-radius: 16px; border: 2px solid var(--ink); overflow: visible; transition: transform 0.2s ease, box-shadow 0.2s ease; position: relative; cursor: pointer; box-shadow: none; }
+    .card { background: var(--tile); border-radius: 16px; border: 2px solid var(--ink); overflow: visible; transition: transform 0.2s ease, box-shadow 0.2s ease; position: relative; cursor: pointer; box-shadow: none; min-width: 0; }
     .card:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0 var(--tomato); }
     .card-image-wrap { position: relative; overflow: hidden; border-radius: 14px 14px 0 0; aspect-ratio: 4 / 3; }
     .card-image { width: 100%; height: 100%; object-fit: cover; background: var(--cream); display: block; border-bottom: 2px solid var(--ink); }
