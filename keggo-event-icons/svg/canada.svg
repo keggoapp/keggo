@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80" width="80" height="80" fill="none">
+<g fill="none" stroke="#1A1715" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+<line x1="18" y1="14" x2="18" y2="66"></line>
+<circle cx="18" cy="12" r="2.2" fill="#1A1715"></circle>
+<path d="M 18 21 C 22.59 19.11 27.25 18.75 31.95 19.1 L 31.95 49.1 C 27.25 48.75 22.59 49.11 18 51 Z" fill="#D84A2A" stroke="none"></path><path d="M 31.95 19.1 C 39.95 19.68 48.05 22.32 56.05 22.9 L 56.05 52.9 C 48.05 52.32 39.95 49.68 31.95 49.1 Z" fill="#F2E4C4" stroke="none"></path><path d="M 56.05 22.9 C 60.75 23.25 65.41 22.89 70 21 L 70 51 C 65.41 52.89 60.75 53.25 56.05 52.9 Z" fill="#D84A2A" stroke="none"></path><line x1="31.95" y1="19.1" x2="31.95" y2="49.1"></line><line x1="56.05" y1="22.9" x2="56.05" y2="52.9"></line><path d="M 44 27 L 45.6 32.4 L 49 31.4 L 47.4 34.6 L 51.6 36.4 L 47.6 38.4 L 48.6 42 L 45.4 41 L 44 45 L 42.6 41 L 39.4 42 L 40.4 38.4 L 36.4 36.4 L 40.6 34.6 L 39 31.4 L 42.4 32.4 Z" fill="#D84A2A" stroke="none"></path>
+<path d="M 18 21 C 35 14 53 28 70 21 L 70 51 C 53 58 35 44 18 51 Z" fill="none"></path>
+</g>
+</svg>

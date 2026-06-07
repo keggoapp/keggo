@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80" width="80" height="80" fill="none">
+<g fill="none" stroke="#1A1715" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+<line x1="18" y1="14" x2="18" y2="66"></line>
+<circle cx="18" cy="12" r="2.2" fill="#1A1715"></circle>
+<path d="M 18 21 C 35 14 53 28 70 21 L 70 51 C 53 58 35 44 18 51 Z" fill="#F2E4C4" stroke="none"></path><path d="M 41.38 20.48 C 43.47 20.89 45.58 21.33 47.67 21.72 L 47.67 51.72 C 45.58 51.33 43.47 50.89 41.38 50.48 Z" fill="#D84A2A" stroke="none"></path><path d="M 18 33.5 C 35 26.5 53 40.5 70 33.5 L 70 38.5 C 53 45.5 35 31.5 18 38.5 Z" fill="#D84A2A" stroke="none"></path>
+<path d="M 18 21 C 35 14 53 28 70 21 L 70 51 C 53 58 35 44 18 51 Z" fill="none"></path>
+</g>
+</svg>

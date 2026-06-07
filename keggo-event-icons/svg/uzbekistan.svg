@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80" width="80" height="80" fill="none">
+<g fill="none" stroke="#1A1715" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+<line x1="18" y1="14" x2="18" y2="66"></line>
+<circle cx="18" cy="12" r="2.2" fill="#1A1715"></circle>
+<path d="M 18 21 C 35 14 53 28 70 21 L 70 31 C 53 38 35 24 18 31 Z" fill="#7FB4DD" stroke="none"></path><path d="M 18 31 C 35 24 53 38 70 31 L 70 41 C 53 48 35 34 18 41 Z" fill="#F2E4C4" stroke="none"></path><path d="M 18 41 C 35 34 53 48 70 41 L 70 51 C 53 58 35 44 18 51 Z" fill="#2E8B57" stroke="none"></path><path d="M 18 31 C 35 24 53 38 70 31" fill="none"></path><path d="M 18 41 C 35 34 53 48 70 41" fill="none"></path><path d="M 18 31 C 35 24 53 38 70 31" fill="none" stroke="#D84A2A"></path><path d="M 18 41 C 35 34 53 48 70 41" fill="none" stroke="#D84A2A"></path><circle cx="28" cy="28" r="3.2" fill="#F2E4C4" stroke="none"></circle><circle cx="29.6" cy="28" r="2.62" fill="#7FB4DD" stroke="none"></circle><path d="M 34 25.6 L 34.37 26.49 L 35.33 26.57 L 34.6 27.19 L 34.82 28.13 L 34 27.63 L 33.18 28.13 L 33.4 27.19 L 32.67 26.57 L 33.63 26.49 Z" fill="#F2E4C4" stroke="none"></path><path d="M 38 27.6 L 38.37 28.49 L 39.33 28.57 L 38.6 29.19 L 38.82 30.13 L 38 29.63 L 37.18 30.13 L 37.4 29.19 L 36.67 28.57 L 37.63 28.49 Z" fill="#F2E4C4" stroke="none"></path>
+<path d="M 18 21 C 35 14 53 28 70 21 L 70 51 C 53 58 35 44 18 51 Z" fill="none"></path>
+</g>
+</svg>
