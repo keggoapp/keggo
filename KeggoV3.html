@@ -302,7 +302,7 @@
 
     .modal-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(26,23,21,0.55); backdrop-filter: blur(2px); display: flex; align-items: center; justify-content: center; z-index: 10000; padding: 20px; }
     .modal { background: var(--card); border-radius: 22px; padding: 30px; max-width: 480px; width: 100%; max-height: 80vh; overflow-y: auto; position: relative; border: 3px solid var(--ink); box-shadow: 8px 8px 0 var(--tomato); }
-    .detail-modal { background: var(--card); border-radius: 22px; padding: 30px; max-width: 540px; width: 100%; max-height: 85vh; overflow-y: auto; position: relative; border: 3px solid var(--ink); box-shadow: 8px 8px 0 var(--tomato); }
+    .detail-modal { background: var(--card); border-radius: 22px; padding: 30px; max-width: 540px; width: 100%; max-height: 85vh; overflow-y: auto; position: relative; border: 3px solid var(--ink); box-shadow: none; }
     .modal-close { position: absolute; top: 16px; right: 16px; width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; background: var(--cream); border: 2.5px solid var(--ink); border-radius: 50%; cursor: pointer; color: var(--ink); font-size: 18px; transition: all var(--transition); font-family: var(--font-mono); z-index: 1; box-shadow: 2px 2px 0 var(--tomato); }
     .modal-close:hover { background: var(--tomato); color: var(--cream); transform: translate(-1px,-1px); box-shadow: 3px 3px 0 var(--tomato); }
 
@@ -397,7 +397,7 @@
     .wizard-section-label { font-family: 'Fredoka', sans-serif; font-size: 13px; font-weight: 700; color: var(--ink); margin-bottom: 4px; }
 
     /* ---- VENUE PROFILE ---- */
-    .profile-card { background: var(--card); border: var(--border-w) solid var(--ink); border-radius: 22px; max-width: 700px; margin: 0 auto; overflow: hidden; box-shadow: 6px 6px 0 var(--tomato); }
+    .profile-card { background: var(--card); border: var(--border-w) solid var(--ink); border-radius: 22px; max-width: 700px; margin: 0 auto; overflow: hidden; box-shadow: none; }
     .profile-hero { width: 100%; aspect-ratio: 4 / 3; height: auto; object-fit: cover; border-bottom: var(--border-w) solid var(--ink); background: var(--cream); display: block; }
     .profile-body { padding: 30px; }
     .profile-name { font-family: var(--font-display); font-size: 32px; font-weight: 700; color: var(--ink); margin-bottom: 2px; letter-spacing: -0.022em; line-height: 1; }
@@ -660,7 +660,7 @@
         max-width: 100%;
         width: 100%;
         padding: 24px 20px max(env(safe-area-inset-bottom, 0px), 20px);
-        box-shadow: 0 -5px 0 var(--tomato);
+        box-shadow: none;
       }
 
       /* Detail modal info grid — keep 2 cols on mobile */
