@@ -655,7 +655,7 @@
       .modal-overlay { align-items: flex-end; padding: 0; }
       body.theme-chalkboard .modal-overlay .modal,
       body.theme-chalkboard .modal-overlay .detail-modal {
-        border-radius: 20px 20px 0 0;
+        border-radius: 20px;
         max-height: 92vh;
         max-width: 100%;
         width: 100%;
@@ -2000,10 +2000,12 @@
       background: var(--tomato); color: var(--cream);
       box-shadow: 2px 2px 0 var(--tomato);
     }
-    /* Dark header band at the top of the get-listed modal */
+    /* Dark header band at the top of the get-listed modal — extends edge
+       to edge by pulling the sides out past the modal's horizontal padding.
+       The modal's overflow + border-radius clip the band's outer corners. */
     body.theme-chalkboard .modal:has(.get-listed-stats) > div:first-of-type {
       background: var(--ink); color: var(--cream);
-      margin: -56px 0 0 !important;
+      margin: -56px -30px 0 !important;
       padding: 56px 28px 32px !important;
       text-align: center; position: relative; overflow: hidden;
     }
