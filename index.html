@@ -744,6 +744,12 @@
       .modal-overlay:has(.login-form),
       .modal-overlay:has(.detail-modal) { align-items: center; }
       .modal-overlay:has(.detail-modal) .detail-modal { border-radius: 20px; }
+
+      /* Venue get-listed stats: tighten so the three columns hold their
+         row at narrow widths — numbers and labels stop wrapping. */
+      .get-listed-stats { padding: 14px 8px; gap: 4px; }
+      .get-listed-stat-num { font-size: 20px; white-space: nowrap; }
+      .get-listed-stat-label { font-size: 9.5px; line-height: 1.2; letter-spacing: 0.04em; }
     }
 
     /* ---- Modal navigation arrows (event detail prev/next) ---- */
