@@ -1731,10 +1731,6 @@
       scrollbar-width: none;
     }
     body.theme-chalkboard .detail-modal { max-width: 640px; }
-    /* Rest-shadow exemption (BRAND §4): the detail modal is a "live thing" —
-       it keeps a permanent 8px tomato rest shadow. Declared after the modal
-       flattening rule above so it wins for .detail-modal only (.modal stays flat). */
-    body.theme-chalkboard .detail-modal { box-shadow: 8px 8px 0 var(--tomato); }
     body.theme-chalkboard .detail-modal::-webkit-scrollbar,
     body.theme-chalkboard .modal::-webkit-scrollbar { width: 0; height: 0; display: none; }
 
