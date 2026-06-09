@@ -3,7 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Keggo V2 — Design Explorations</title>
+  <title>Keggo — What's on near you tonight</title>
+  <link rel="icon" type="image/svg+xml" href="Keggo%20Favicon.svg" />
+  <link rel="apple-touch-icon" href="Keggo%20App%20Icon%20180.png" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.9/babel.min.js"></script>
@@ -1881,8 +1883,8 @@
     }
     body.theme-chalkboard .detail-action-btn.saved {
       background: var(--ink); color: var(--honey);
-      border-color: var(--ink);
-      box-shadow: 2px 2px 0 var(--tomato);
+      border-color: var(--cream);
+      box-shadow: none;
     }
 
     /* INFO GRID — four matching cream stat panels (mirrors the
@@ -2461,7 +2463,8 @@
       border-color: var(--cream);
     }
     body.theme-chalkboard .card .card-badge:hover {
-      background: var(--cream); color: var(--ink); border-color: var(--ink);
+      background: var(--ink); color: var(--honey); border-color: var(--ink);
+      box-shadow: 2px 2px 0 var(--tomato);
     }
     body.theme-chalkboard .card .card-badge.is-saved {
       background: var(--ink); color: var(--honey); border-color: var(--cream);
@@ -2692,7 +2695,6 @@
 
     function formatDistance(miles) {
       if (miles < 0.15) return "Right here";
-      if (miles < 1) return miles.toFixed(1) + " miles";
       return miles.toFixed(1) + " miles";
     }
 
@@ -3006,47 +3008,17 @@
     };
 
     /* Brand-palette assignments per category.
-       All event tags use a black ground with honey writing — orange enters only
-       on hover (via the .card-cat-tag:hover rule in CSS, not via these tokens). */
-    const CAT_STYLES = {
-      music:     { bg: "#1A1715", text: "#F4B944", icon: "#F4B944", tone: "ink" },
-      comedy:    { bg: "#1A1715", text: "#F4B944", icon: "#F4B944", tone: "ink" },
-      karaoke:   { bg: "#1A1715", text: "#F4B944", icon: "#F4B944", tone: "ink" },
-      dj:        { bg: "#1A1715", text: "#F4B944", icon: "#F4B944", tone: "ink" },
-      movie:     { bg: "#1A1715", text: "#F4B944", icon: "#F4B944", tone: "ink" },
-      sports:    { bg: "#1A1715", text: "#F4B944", icon: "#F4B944", tone: "ink" },
-      quiz:      { bg: "#1A1715", text: "#F4B944", icon: "#F4B944", tone: "ink" },
-      games:     { bg: "#1A1715", text: "#F4B944", icon: "#F4B944", tone: "ink" },
-      pool:      { bg: "#1A1715", text: "#F4B944", icon: "#F4B944", tone: "ink" },
-      darts:     { bg: "#1A1715", text: "#F4B944", icon: "#F4B944", tone: "ink" },
-      bingo:     { bg: "#1A1715", text: "#F4B944", icon: "#F4B944", tone: "ink" },
-      food:      { bg: "#1A1715", text: "#F4B944", icon: "#F4B944", tone: "ink" },
-      brunch:    { bg: "#1A1715", text: "#F4B944", icon: "#F4B944", tone: "ink" },
-      roast:     { bg: "#1A1715", text: "#F4B944", icon: "#F4B944", tone: "ink" },
-      coffee:    { bg: "#1A1715", text: "#F4B944", icon: "#F4B944", tone: "ink" },
-      cocktails: { bg: "#1A1715", text: "#F4B944", icon: "#F4B944", tone: "ink" },
-      tasting:   { bg: "#1A1715", text: "#F4B944", icon: "#F4B944", tone: "ink" },
-      art:       { bg: "#1A1715", text: "#F4B944", icon: "#F4B944", tone: "ink" },
-      bookclub:  { bg: "#1A1715", text: "#F4B944", icon: "#F4B944", tone: "ink" },
-      charity:   { bg: "#1A1715", text: "#F4B944", icon: "#F4B944", tone: "ink" },
-      dogs:      { bg: "#1A1715", text: "#F4B944", icon: "#F4B944", tone: "ink" },
-      outdoor:   { bg: "#1A1715", text: "#F4B944", icon: "#F4B944", tone: "ink" },
-      other:     { bg: "#1A1715", text: "#F4B944", icon: "#F4B944", tone: "ink" },
-      worldcup:              { bg: "#1A1715", text: "#F4B944", icon: "#F4B944", tone: "ink" },
-      "pub-games":           { bg: "#1A1715", text: "#F4B944", icon: "#F4B944", tone: "ink" },
-      "music-entertainment": { bg: "#1A1715", text: "#F4B944", icon: "#F4B944", tone: "ink" },
-      "social-lifestyle":    { bg: "#1A1715", text: "#F4B944", icon: "#F4B944", tone: "ink" },
-      "food-drink":          { bg: "#1A1715", text: "#F4B944", icon: "#F4B944", tone: "ink" },
-    };
-
-    function getIconHTML(category) {
-      return getIconHTMLColoured(category);
-    }
-
-    function getIconHTMLColoured(category) {
-      const svgContent = CAT_SVG_INLINE[category] || CAT_SVG_INLINE.other;
-      return svgContent;
-    }
+       Every category currently shares ONE tag style — a black ground with honey
+       writing. Orange enters only on hover (via the .card-cat-tag:hover rule in
+       CSS, not via these tokens). Rather than repeat the same object for all 28
+       categories, it's defined once below and reused for every category id.
+       Call sites use `CAT_STYLES[category] || CAT_STYLES.other`, so the fallback
+       keeps working. To give one category its own colour later, replace the
+       Object.fromEntries line with an explicit map for just that id. */
+    const CAT_TAG_STYLE = { bg: "#1A1715", text: "#F4B944", icon: "#F4B944", tone: "ink" };
+    const CAT_STYLES = Object.fromEntries(
+      [...CATEGORIES, ...SPORT_SUBTYPES, { id: "other" }].map(c => [c.id, CAT_TAG_STYLE])
+    );
 
     /* Brand placeholder — cream bg with V2 icon when no photo */
     function createSVGPlaceholder(category) {
@@ -3359,6 +3331,33 @@
       { featureType: "road", elementType: "labels.text.fill", stylers: [{ color: "#605a51" }] },
     ];
 
+    /* Google Maps API key — also referenced by the <script> tag in <head>.
+       Kept here as one constant so the embedded-map component below is the only
+       place the key appears in the app code. */
+    const GMAPS_API_KEY = "AIzaSyDZ7TpD33-fiGsc85FnDJbHl9OKuz3wXkM";
+
+    /* --- Shared embedded Google map ---
+       One component for every "show this place on a map" iframe (venue profile,
+       profile editor, event detail). Pass either an address string or a
+       "lat,lng" string as `query`; pass `zoom` for a fixed zoom level. */
+    function GoogleMapEmbed({ query, zoom, className, style }) {
+      const src = `https://www.google.com/maps/embed/v1/place?key=${GMAPS_API_KEY}&q=${encodeURIComponent(query)}${zoom ? `&zoom=${zoom}` : ""}`;
+      return <iframe src={src} className={className} style={style} allowFullScreen="" loading="lazy" referrerPolicy="no-referrer-when-downgrade"></iframe>;
+    }
+
+    /* --- Wait for the Google Maps script (incl. the Places library) ---
+       The Maps script loads asynchronously, so the map view and the address
+       autocompletes have to wait for it. This helper replaces four near-identical
+       hand-rolled setInterval loops: it runs `ready` as soon as Maps is available
+       (immediately if already loaded) and returns a cleanup function that stops
+       polling — call it from a useEffect cleanup. */
+    function waitForGoogleMaps(ready, intervalMs = 200) {
+      const isReady = () => window.google && window.google.maps && window.google.maps.places;
+      if (isReady()) { ready(); return () => {}; }
+      const id = setInterval(() => { if (isReady()) { clearInterval(id); ready(); } }, intervalMs);
+      return () => clearInterval(id);
+    }
+
     /* --- Venue Profile Modal (read-only for users) --- */
     /* Venue name rendered as an unmistakable button (event card + detail modal + list) */
     function VenueLinkButton({ venue, onClick, className }) {
@@ -3449,7 +3448,7 @@
                   <>
                     <div className="profile-section-title">Find us</div>
                     <p style={{ fontSize: "14px", color: "var(--ink-soft)", marginBottom: "10px" }}>{profile.address}</p>
-                    <iframe src={`https://www.google.com/maps/embed/v1/place?key=AIzaSyDZ7TpD33-fiGsc85FnDJbHl9OKuz3wXkM&q=${encodeURIComponent(profile.address)}`} style={{ width: "100%", height: "180px", borderRadius: "12px", border: "2px solid var(--ink)", marginBottom: "20px" }} allowFullScreen="" loading="lazy"></iframe>
+                    <GoogleMapEmbed query={profile.address} style={{ width: "100%", height: "180px", borderRadius: "12px", border: "2px solid var(--ink)", marginBottom: "20px" }} />
                   </>
                 )}
                 {profile.services.length > 0 && (
@@ -3535,9 +3534,8 @@
       const currentImage = photo || VENUE_IMAGES_DEFAULT[user.name] || null;
 
       useEffect(() => {
-        let interval;
-        const initAutocomplete = () => {
-          if (window.google && window.google.maps && window.google.maps.places && addressInputRef.current && !autocompleteRef.current) {
+        return waitForGoogleMaps(() => {
+          if (addressInputRef.current && !autocompleteRef.current) {
             autocompleteRef.current = new google.maps.places.Autocomplete(addressInputRef.current, {
               componentRestrictions: { country: 'gb' },
               fields: ['formatted_address', 'geometry', 'name']
@@ -3549,12 +3547,7 @@
               }
             });
           }
-        };
-        initAutocomplete();
-        if (!autocompleteRef.current) {
-          interval = setInterval(initAutocomplete, 200);
-        }
-        return () => { if (interval) clearInterval(interval); };
+        });
       }, []);
 
       const toggleService = (s) => {
@@ -3644,11 +3637,7 @@
             </div>
           </div>
           {address && (
-            <iframe
-              src={`https://www.google.com/maps/embed/v1/place?key=AIzaSyDZ7TpD33-fiGsc85FnDJbHl9OKuz3wXkM&q=${encodeURIComponent(address)}`}
-              style={{ width: "100%", height: "180px", borderRadius: "12px", border: "2px solid var(--ink)", marginTop: "12px" }}
-              allowFullScreen="" loading="lazy"
-            ></iframe>
+            <GoogleMapEmbed query={address} style={{ width: "100%", height: "180px", borderRadius: "12px", border: "2px solid var(--ink)", marginTop: "12px" }} />
           )}
           <div className="form-grid full" style={{ marginTop: "10px" }}>
             <div className="field">
@@ -3839,7 +3828,7 @@
               </div>
             )}
             <h3 style={{ fontFamily: "'Fredoka', sans-serif", fontSize: "16px", fontWeight: 700, marginBottom: "12px", marginTop: "16px" }}>Location</h3>
-            {coords && <iframe src={`https://www.google.com/maps/embed/v1/place?key=AIzaSyDZ7TpD33-fiGsc85FnDJbHl9OKuz3wXkM&q=${coords.lat},${coords.lng}&zoom=16`} className="google-map-embed" allowFullScreen="" loading="lazy" referrerPolicy="no-referrer-when-downgrade"></iframe>}
+            {coords && <GoogleMapEmbed query={`${coords.lat},${coords.lng}`} zoom={16} className="google-map-embed" />}
           </div>
         </div>
       );
@@ -3983,9 +3972,8 @@
 
       useEffect(() => {
         if (step !== 3) return;
-        let interval;
-        const init = () => {
-          if (window.google?.maps?.places && locationInputRef.current && !locationAutocompleteRef.current) {
+        return waitForGoogleMaps(() => {
+          if (locationInputRef.current && !locationAutocompleteRef.current) {
             locationAutocompleteRef.current = new google.maps.places.Autocomplete(locationInputRef.current, {
               componentRestrictions: { country: 'gb' }, fields: ['formatted_address']
             });
@@ -3993,12 +3981,8 @@
               const p = locationAutocompleteRef.current.getPlace();
               if (p?.formatted_address) setForm(f => ({ ...f, location: p.formatted_address }));
             });
-            clearInterval(interval);
           }
-        };
-        init();
-        interval = setInterval(init, 200);
-        return () => clearInterval(interval);
+        });
       }, [step]);
 
       const handleFileChange = (e) => {
@@ -4263,9 +4247,8 @@
       const [mapReady, setMapReady] = useState(false);
 
       useEffect(() => {
-        let interval;
-        const initMap = () => {
-          if (window.google && window.google.maps && mapRef.current && !mapInstance.current) {
+        return waitForGoogleMaps(() => {
+          if (mapRef.current && !mapInstance.current) {
             const center = userLocation || { lat: 51.378, lng: -0.475 };
             mapInstance.current = new google.maps.Map(mapRef.current, {
               center: center,
@@ -4278,14 +4261,8 @@
               fullscreenControl: false,
             });
             setMapReady(true);
-            if (interval) clearInterval(interval);
           }
-        };
-        initMap();
-        if (!mapInstance.current) {
-          interval = setInterval(initMap, 200);
-        }
-        return () => { if (interval) clearInterval(interval); };
+        });
       }, []);
 
       useEffect(() => {
@@ -4393,33 +4370,6 @@
         </div>
       );
     }
-
-    /* ── All categories for venue event form (main + secondary + sport subtypes) ── */
-    const ALL_EVENT_CATEGORIES = [
-      { id: "music",     label: "Live Music",     svgFile: "live-music" },
-      { id: "quiz",      label: "Quiz Night",     svgFile: "quizzes" },
-      { id: "sports",    label: "Live Sport",     svgFile: "live-sport" },
-      { id: "food",      label: "Food & Drink",   svgFile: "food-drink" },
-      { id: "comedy",    label: "Comedy",         svgFile: "comedy" },
-      { id: "movie",     label: "Movie Night",    svgFile: "movie-night" },
-      { id: "karaoke",   label: "Karaoke",        svgFile: "karaoke" },
-      { id: "games",     label: "Games Night",    svgFile: "games-night" },
-      { id: "roast",     label: "Sunday Roast",   svgFile: "sunday-roast" },
-      { id: "coffee",    label: "Coffee Morning", svgFile: "coffee-morning" },
-      { id: "cocktails", label: "Cocktails",      svgFile: "cocktails" },
-      { id: "bingo",     label: "Bingo",          svgFile: "bingo" },
-      { id: "dj",        label: "DJ Night",       svgFile: "dj-night" },
-      { id: "art",       label: "Art & Craft",    svgFile: "art-craft" },
-      { id: "bookclub",  label: "Book Club",      svgFile: "book-club" },
-      { id: "brunch",    label: "Brunch",         svgFile: "brunch" },
-      { id: "tasting",   label: "Tasting",        svgFile: "tasting" },
-      { id: "charity",   label: "Charity",        svgFile: "charity" },
-      { id: "outdoor",   label: "Outdoor",        svgFile: "outdoor" },
-      { id: "dogs",      label: "Dog Friendly",   svgFile: "dog-friendly" },
-      { id: "pool",      label: "Pool",           svgFile: "pool" },
-      { id: "darts",     label: "Darts",          svgFile: "darts" },
-      { id: "other",     label: "Other",          svgFile: "other" },
-    ];
 
     /* ── VenueDashboard ── */
     function VenueDashboard({ user, events, onNewEvent, onEditEvent, onRepeatEvent, onDeleteEvent, profiles, onEditProfile, onPreviewProfile, onPreviewEvent }) {
@@ -4593,6 +4543,63 @@
       );
     }
 
+    /* ── Event card (shared) ──
+       One card component used by both the Explore grid and the Saved grid.
+       The two grids differ only in a few details, switched by `variant`:
+         • "grid"  — full card: clickable venue link, area, prominent date/time
+                     meta, venue service tags, and a Save bookmark that prompts
+                     sign-in when logged out.
+         • "saved" — compact card: simple venue/date/time meta and a Remove
+                     bookmark (the event is already saved by definition).
+       `list` is the array the card belongs to; it's handed back through onOpen
+       so the detail modal can page through the right set of events. */
+    function EventCard({ event, list, variant, user, savedEvents, venueProfiles, onOpen, onSave, onViewVenue, onLoginRequired }) {
+      const catStyle = CAT_STYLES[event.category] || CAT_STYLES.other;
+      const fd = formatDate(event.date);
+      const when = getEventWhenSticker(event.date);
+      const isSaved = savedEvents.some(s => s.id === event.id);
+      return (
+        <div className="card" onClick={() => onOpen(event, list)} style={variant === "saved" ? { cursor: "pointer" } : undefined}>
+          <div className="card-image-wrap">
+            <img src={getPosterImage(event, venueProfiles)} alt={event.title} className="card-image" />
+            <CardIconBadge category={event.category} teams={event.teams} />
+          </div>
+          <div className="card-content">
+            <div className="card-tag-row">
+              <span className="card-cat-tag" data-tone={catStyle.tone} style={{ background: catStyle.bg, color: catStyle.text }}>{CATEGORIES.find(c => c.id === event.category)?.label}</span>
+              {when && user && user.type === "venue" && <span className={`card-when-sticker ${when.tone}`}>{when.label}</span>}
+              {event.sportType && <span className="sport-sub-tag">{SPORT_TYPES.find(s => s.id === event.sportType)?.label}</span>}
+              {event.teams?.length > 0 && <span className="card-cat-tag" data-tone={catStyle.tone} style={{ background: catStyle.bg, color: catStyle.text }}>{event.teams.map(teamLabel).join(" v ")}</span>}
+            </div>
+            <h3 className="card-title">{event.title}</h3>
+            {variant === "saved" ? (
+              <div className="card-meta"><span>{event.venue}</span><span className="meta-mono">{fd.weekday.toUpperCase()}</span><span>{event.time}</span><span style={{ color: "var(--ink)", fontWeight: "700" }}>{event.price}</span></div>
+            ) : (
+              <>
+                <VenueLinkButton venue={event.venue} className="venue-link-btn--card" onClick={e => { e.stopPropagation(); onViewVenue(event.venue, event.area); }} />
+                {event.area && <div className="card-venue-area">{event.area}</div>}
+                <div className="card-meta card-meta-prominent">
+                  <span className="meta-mono">{fd.weekday.toUpperCase()} {fd.day} {fd.month}</span>
+                  <span>{event.time}{event.endTime ? ` – ${event.endTime}` : ""}</span>
+                  <span style={{ color: "var(--ink)", fontWeight: "700" }}>{event.price}</span>
+                </div>
+                {venueProfiles[event.venue]?.services?.length > 0 && (
+                  <ServiceTagsOneLine services={venueProfiles[event.venue].services} className="card-venue-services" />
+                )}
+              </>
+            )}
+            <div className="card-badges">
+              {variant === "saved" ? (
+                <div className="card-badge is-saved" onClick={e => { e.stopPropagation(); onSave(event); }} title="Remove"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" strokeWidth="2.5"><path d="M19 21l-7-5-7 5V5a2 2 0 012-2h10a2 2 0 012 2z"/></svg></div>
+              ) : (
+                <div className={`card-badge ${isSaved ? "is-saved" : ""}`} onClick={e => { e.stopPropagation(); if (!user) { onLoginRequired(); } else { onSave(event); } }} title={user ? "Save" : "Sign in to save"}><svg width="14" height="14" viewBox="0 0 24 24" fill={isSaved ? "currentColor" : "none"} stroke="currentColor" strokeWidth="2.5"><path d="M19 21l-7-5-7 5V5a2 2 0 012-2h10a2 2 0 012 2z"/></svg></div>
+              )}
+            </div>
+          </div>
+        </div>
+      );
+    }
+
     function App() {
       const [user, setUser] = useState(null);
       const [authLoading, setAuthLoading] = useState(true);
@@ -4672,15 +4679,11 @@
       useEffect(() => {
         // Only attempt to bind when the search input is actually rendered (Events tab)
         if (exploreTab !== "events") return;
-        let interval;
-        let cancelled = false;
-        const initAutocomplete = () => {
-          if (cancelled) return true;
-          if (!locationSearchRef.current) return false;
-          if (!(window.google && window.google.maps && window.google.maps.places)) return false;
+        return waitForGoogleMaps(() => {
+          if (!locationSearchRef.current) return;
           // Re-bind if the underlying DOM input has changed (e.g. tab switch unmounted/remounted it)
           if (locationSearchAutocompleteRef.current && locationSearchAutocompleteRef.current.__bound === locationSearchRef.current) {
-            return true;
+            return;
           }
           const ac = new google.maps.places.Autocomplete(locationSearchRef.current, {
             componentRestrictions: { country: 'gb' },
@@ -4701,13 +4704,7 @@
           // Stop the browser autofill stomping on the dropdown
           locationSearchRef.current.setAttribute('autocomplete', 'off');
           locationSearchAutocompleteRef.current = ac;
-          if (interval) { clearInterval(interval); interval = null; }
-          return true;
-        };
-        if (!initAutocomplete()) {
-          interval = setInterval(initAutocomplete, 250);
-        }
-        return () => { cancelled = true; if (interval) clearInterval(interval); };
+        }, 250);
       }, [exploreTab]);
 
       const showToast = useCallback((msg) => { setToast(msg); setTimeout(() => setToast(null), 2000); }, []);
@@ -5114,42 +5111,21 @@
                       {view === "grid" && (
                         <>
                           <div className="events-grid">
-                            {filteredEvents.map(event => {
-                              const catStyle = CAT_STYLES[event.category] || CAT_STYLES.other;
-                              const fd = formatDate(event.date);
-                              const when = getEventWhenSticker(event.date);
-                              const isSaved = savedEvents.some(s => s.id === event.id);
-                              return (
-                                <div key={event.id} className="card" onClick={() => { setSelectedEventList(filteredEvents); setSelectedEvent(event); }}>
-                                  <div className="card-image-wrap">
-                                    <img src={getPosterImage(event, venueProfiles)} alt={event.title} className="card-image" />
-                                    <CardIconBadge category={event.category} teams={event.teams} />
-                                  </div>
-                                  <div className="card-content">
-                                    <div className="card-tag-row">
-                                      <span className="card-cat-tag" data-tone={catStyle.tone} style={{ background: catStyle.bg, color: catStyle.text }}>{CATEGORIES.find(c => c.id === event.category)?.label}</span>
-                                      {when && user && user.type === "venue" && <span className={`card-when-sticker ${when.tone}`}>{when.label}</span>}
-                                      {event.sportType && <span className="sport-sub-tag">{SPORT_TYPES.find(s => s.id === event.sportType)?.label}</span>}
-                                      {event.teams?.length > 0 && <span className="card-cat-tag" data-tone={catStyle.tone} style={{ background: catStyle.bg, color: catStyle.text }}>{event.teams.map(teamLabel).join(" v ")}</span>}
-                                    </div>
-                                    <h3 className="card-title">{event.title}</h3>
-                                    <VenueLinkButton venue={event.venue} className="venue-link-btn--card" onClick={e => { e.stopPropagation(); handleViewVenue(event.venue, event.area); }} />
-                                    {event.area && <div className="card-venue-area">{event.area}</div>}
-                                    <div className="card-meta card-meta-prominent">
-                                      <span className="meta-mono">{fd.weekday.toUpperCase()} {fd.day} {fd.month}</span>
-                                      <span>{event.time}{event.endTime ? ` – ${event.endTime}` : ""}</span>
-                                      <span style={{ color: "var(--ink)", fontWeight: "700" }}>{event.price}</span>
-                                    </div>
-                                    {venueProfiles[event.venue]?.services?.length > 0 && (
-                                      <ServiceTagsOneLine services={venueProfiles[event.venue].services} className="card-venue-services" />
-                                    )}
-                                    <div className="card-badges">
-                                      <div className={`card-badge ${isSaved ? "is-saved" : ""}`} onClick={e => { e.stopPropagation(); if (!user) { setLoginType("user"); setShowLoginModal(true); } else { handleSaveEvent(event); } }} title={user ? "Save" : "Sign in to save"}><svg width="14" height="14" viewBox="0 0 24 24" fill={isSaved ? "currentColor" : "none"} stroke="currentColor" strokeWidth="2.5"><path d="M19 21l-7-5-7 5V5a2 2 0 012-2h10a2 2 0 012 2z"/></svg></div>
-                                    </div>
-                                  </div>
-                                </div>
-                              );
-                            })}
+                            {filteredEvents.map(event => (
+                              <EventCard
+                                key={event.id}
+                                event={event}
+                                list={filteredEvents}
+                                variant="grid"
+                                user={user}
+                                savedEvents={savedEvents}
+                                venueProfiles={venueProfiles}
+                                onOpen={(ev, lst) => { setSelectedEventList(lst); setSelectedEvent(ev); }}
+                                onSave={handleSaveEvent}
+                                onViewVenue={handleViewVenue}
+                                onLoginRequired={() => { setLoginType("user"); setShowLoginModal(true); }}
+                              />
+                            ))}
                           </div>
                         </>
                       )}
@@ -5191,8 +5167,6 @@
                       )}
                     </>
                   )}
-
-                  {selectedEvent && <EventDetailModal event={selectedEvent} onClose={() => { setSelectedEvent(null); setSelectedEventList([]); }} onSave={handleSaveEvent} savedEvents={savedEvents} showToast={showToast} userLocation={userLocation} onViewVenue={handleViewVenue} venueProfiles={venueProfiles} user={user} onLoginRequired={() => { setSelectedEvent(null); setLoginType("user"); setShowLoginModal(true); }} eventList={selectedEventList} currentIdx={currentEventIdx} onNavigate={handleNavigateModal} />}
                 </div>
               )}
 
@@ -5210,7 +5184,6 @@
                     onPreviewProfile={() => handleViewVenue(user.name, user.area)}
                     onPreviewEvent={(ev, list) => { setSelectedEventList(list || [ev]); setSelectedEvent(ev); }}
                   />
-                  {selectedEvent && <EventDetailModal event={selectedEvent} onClose={() => { setSelectedEvent(null); setSelectedEventList([]); }} onSave={handleSaveEvent} savedEvents={savedEvents} showToast={showToast} userLocation={userLocation} onViewVenue={handleViewVenue} venueProfiles={venueProfiles} user={user} onLoginRequired={() => { setSelectedEvent(null); setLoginType("user"); setShowLoginModal(true); }} eventList={selectedEventList} currentIdx={currentEventIdx} onNavigate={handleNavigateModal} />}
                 </>
               )}
 
@@ -5230,39 +5203,30 @@
                     <div className="empty"><SVGEmptySaveIcon /><h3>No saved events yet</h3><p>Tap the bookmark on any event you fancy — they'll wait for you here.</p></div>
                   ) : (
                     <div className="events-grid">
-                      {savedEvents.map(event => {
-                        const catStyle = CAT_STYLES[event.category] || CAT_STYLES.other;
-                        const when = getEventWhenSticker(event.date);
-                        return (
-                          <div key={event.id} className="card" onClick={() => { setSelectedEventList(savedEvents); setSelectedEvent(event); }} style={{ cursor: "pointer" }}>
-                            <div className="card-image-wrap">
-                              <img src={getPosterImage(event, venueProfiles)} alt={event.title} className="card-image" />
-                              <CardIconBadge category={event.category} teams={event.teams} />
-                            </div>
-                            <div className="card-content">
-                              <div className="card-tag-row">
-                                <span className="card-cat-tag" data-tone={catStyle.tone} style={{ background: catStyle.bg, color: catStyle.text }}>{CATEGORIES.find(c => c.id === event.category)?.label}</span>
-                                {when && user && user.type === "venue" && <span className={`card-when-sticker ${when.tone}`}>{when.label}</span>}
-                                {event.sportType && <span className="sport-sub-tag">{SPORT_TYPES.find(s => s.id === event.sportType)?.label}</span>}
-                                {event.teams?.length > 0 && <span className="card-cat-tag" data-tone={catStyle.tone} style={{ background: catStyle.bg, color: catStyle.text }}>{event.teams.map(teamLabel).join(" v ")}</span>}
-                              </div>
-                              <h3 className="card-title">{event.title}</h3>
-                              <div className="card-meta"><span>{event.venue}</span><span className="meta-mono">{formatDate(event.date).weekday.toUpperCase()}</span><span>{event.time}</span><span style={{ color: "var(--ink)", fontWeight: "700" }}>{event.price}</span></div>
-                              <div className="card-badges">
-                                <div className="card-badge is-saved" onClick={e => { e.stopPropagation(); handleSaveEvent(event); }} title="Remove"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" strokeWidth="2.5"><path d="M19 21l-7-5-7 5V5a2 2 0 012-2h10a2 2 0 012 2z"/></svg></div>
-                              </div>
-                            </div>
-                          </div>
-                        );
-                      })}
+                      {savedEvents.map(event => (
+                        <EventCard
+                          key={event.id}
+                          event={event}
+                          list={savedEvents}
+                          variant="saved"
+                          user={user}
+                          savedEvents={savedEvents}
+                          venueProfiles={venueProfiles}
+                          onOpen={(ev, lst) => { setSelectedEventList(lst); setSelectedEvent(ev); }}
+                          onSave={handleSaveEvent}
+                        />
+                      ))}
                     </div>
                   )}
-                  {selectedEvent && <EventDetailModal event={selectedEvent} onClose={() => { setSelectedEvent(null); setSelectedEventList([]); }} onSave={handleSaveEvent} savedEvents={savedEvents} showToast={showToast} userLocation={userLocation} onViewVenue={handleViewVenue} venueProfiles={venueProfiles} user={user} onLoginRequired={() => { setSelectedEvent(null); setLoginType("user"); setShowLoginModal(true); }} eventList={selectedEventList} currentIdx={currentEventIdx} onNavigate={handleNavigateModal} />}
                 </div>
               )}
             </>
           )}
 
+          {/* Event detail modal — rendered once here at the root so it works the
+              same from every view (explore, dashboard, saved). It's a fixed
+              overlay, so its position in the tree doesn't affect layout. */}
+          {selectedEvent && <EventDetailModal event={selectedEvent} onClose={() => { setSelectedEvent(null); setSelectedEventList([]); }} onSave={handleSaveEvent} savedEvents={savedEvents} showToast={showToast} userLocation={userLocation} onViewVenue={handleViewVenue} venueProfiles={venueProfiles} user={user} onLoginRequired={() => { setSelectedEvent(null); setLoginType("user"); setShowLoginModal(true); }} eventList={selectedEventList} currentIdx={currentEventIdx} onNavigate={handleNavigateModal} />}
           {viewingVenue && <VenueProfileModal venueName={viewingVenue.name} venueArea={viewingVenue.area} profiles={venueProfiles} events={events} onClose={handleCloseVenue} onSelectEvent={(ev, list) => { setViewingVenue(null); setVenueReturnEvent(null); setSelectedEventList(list || [ev]); setSelectedEvent(ev); }} />}
           {showLoginModal && <LoginModal initialTab={loginType} onLogin={u => { setUser(u); setShowLoginModal(false); if (u.type === "venue") setView("dashboard"); }} onClose={() => setShowLoginModal(false)} onGetListed={() => { setShowLoginModal(false); setShowVenueGetListed(true); }} />}
           {showVenueGetListed && <VenueGetListedPage onClose={() => setShowVenueGetListed(false)} onOpenVenueLogin={() => { setShowVenueGetListed(false); setLoginType("venue"); setShowLoginModal(true); }} showToast={showToast} />}
@@ -5323,8 +5287,33 @@
       );
     }
 
+    /* --- Error boundary ---
+       A safety net: if any component throws while rendering, React would
+       otherwise unmount the whole app and leave a blank page. This catches that
+       and shows a friendly message with a reload button instead. */
+    class ErrorBoundary extends React.Component {
+      constructor(props) { super(props); this.state = { hasError: false }; }
+      static getDerivedStateFromError() { return { hasError: true }; }
+      componentDidCatch(error, info) { console.error("Keggo hit an error:", error, info); }
+      render() {
+        if (this.state.hasError) {
+          return (
+            <div style={{ display: "flex", alignItems: "center", justifyContent: "center", minHeight: "100vh", background: "var(--paper)", padding: "24px", textAlign: "center" }}>
+              <div>
+                <div style={{ fontFamily: "'Fredoka', sans-serif", fontWeight: 700, fontSize: "36px", color: "var(--ink)", letterSpacing: "-0.03em", marginBottom: "12px" }}>Keggo<span style={{ color: "var(--tomato)" }}>.</span></div>
+                <h3 style={{ fontFamily: "'Fredoka', sans-serif", fontSize: "20px", marginBottom: "8px", color: "var(--ink)" }}>Something went wrong.</h3>
+                <p style={{ fontFamily: "var(--font-body)", color: "var(--ink-soft)", maxWidth: "40ch", margin: "0 auto 20px" }}>Sorry about that — a quick reload usually sorts it.</p>
+                <button onClick={() => window.location.reload()} style={{ fontFamily: "'Fredoka', sans-serif", fontWeight: 600, fontSize: "14px", padding: "10px 22px", borderRadius: "100px", border: "2.5px solid var(--ink)", background: "var(--tomato)", color: "var(--cream)", cursor: "pointer", boxShadow: "2px 2px 0 var(--ink)" }}>Reload</button>
+              </div>
+            </div>
+          );
+        }
+        return this.props.children;
+      }
+    }
+
     const root = ReactDOM.createRoot(document.getElementById("root"));
-    root.render(<App />);
+    root.render(<ErrorBoundary><App /></ErrorBoundary>);
   </script>
 </body>
 </html>
